@@ -5,8 +5,8 @@
     align-items: center;
 }
 .main{
-    width: 420px; 
-    min-height: 550px;
+    width: 400px; 
+    min-height: 500px;
     border: 10px solid #ABBD8A;
     display: flex;
     flex-wrap: wrap;
@@ -33,7 +33,7 @@
 }
 
 .calc-keys button{
-    padding: 25px;
+    padding: 21px;
     border: none;
     font-size: 25px;
     font-weight: bold;
