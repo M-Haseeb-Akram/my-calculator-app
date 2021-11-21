@@ -5,12 +5,14 @@
     align-items: center;
 }
 .main{
-    width: 470px;
-    min-height: 570px;
+    width: 420px; 
+    min-height: 550px;
     border: 10px solid #ABBD8A;
     display: flex;
-    flex-wrap: wrap;  
-    margin-top: 15%;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    /* justify-content: stretch;  */
+    margin-top: 10%;
     background-color: #ABCFE7;
 }
 .box{
@@ -19,7 +21,7 @@
     background-color: #F3FBEC;
     box-shadow: 2px 4px rgba(214, 206, 206, 0.644);
     margin:20px 10px 30px 10px;
-    border-radius: 6px;
+    border-radius: 6px; 
 }
 .calc-keys{
     width: 95%;
@@ -31,7 +33,7 @@
 }
 
 .calc-keys button{
-    padding: 30px;
+    padding: 25px;
     border: none;
     font-size: 25px;
     font-weight: bold;
