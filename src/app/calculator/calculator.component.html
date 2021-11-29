@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="main">
+        <div class="box">
+            <p id="input">{{ this.input }}</p>
+            <p id="output">{{ this.output }}</p>
+        </div>
+        <div class="calc-keys">
+            <button *ngFor="let button of buttons" value="{{ button.value }}" class="{{ button.class }}" (click) = "actions(button.value)">{{ button.value }}</button>
+        </div>
+    </div>
+</div>
