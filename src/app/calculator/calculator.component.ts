@@ -1,4 +1,4 @@
-import { BUTTONS } from './button-list';
+import { CalculatorKeys } from './../models/button-list';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -7,62 +7,73 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.css'],
   host: {
-    '(document:keydown)': 'keys_action($event)'
+    '(document:keydown)': 'keyBoardEvents($event)'
   }
 })
 export class CalculatorComponent implements OnInit {
-  buttons= BUTTONS;
-  input: string = "";
-  output: string = "";
+  buttons= CalculatorKeys;
+  input_value = "";
+  result = "";
+  operators = ['/','*','+','-'];
   constructor() { }
 
   ngOnInit(): void {
   }
 
   setInput = (value:string): void => {
-    this.input += value; 
+    let last_word = this.input_value.slice(-1) 
+    let check_value = this.operators.includes(value);
+    let check_last_word = this.operators.includes(last_word);
+    if (check_last_word){ 
+        if(!check_value){
+          this.input_value += value; 
+        }    
+    } 
+    else{
+      this.input_value += value; 
+    } 
   }
 
-  clear = (): void => {
-    this.input = "";
-    this.output = "";
+  clearAll = (): void => {
+    this.input_value = "";
+    this.result = "";
   }
 
-  calculate = (): void => {
+  calculateExpression = (): void => {
     try{
-      let result = eval(this.input)
+      let result = eval(this.input_value)
       if(result != undefined){
-          this.output = result;
+          this.result = result;
       }   
     }
     catch(err){
-      this.output = "Invalid";   
+      this.result = "Invalid";   
     }
   }
 
-  actions = (value:string) : void => {
+  keysOperations = (value:string) : void => {
     if(value === 'C'){
-      this.clear();
+      this.clearAll();
     }
     else if(value === '='){
-      this.calculate();
+      this.calculateExpression();
     }
     else{
       this.setInput(value);
     }
   }
 
-  keys_action = (event: KeyboardEvent) => {
+  keyBoardEvents = (event: KeyboardEvent) => {
     const name = event.key;
     const keyCode = event.keyCode || event.which;
-    if((keyCode >=48 && keyCode <=57) || name === '*' || name === '+' || name === '-' || name === '/' || name === '(' || name === ')'){
-        this.input += name;
+    if((keyCode >=48 && keyCode <=57) || name === '*' || name === '+' || name === '-' || name === '/'){
+      this.setInput(name);    
     } 
-    else if (name === 'Backspace' || name === 'Delete'){
-        this.input = this.input.substring(0,this.input.length-1);
+    else if (name === 'Delete'){
+        this.clearAll();
     }
     else if(name === 'Enter'){
-        this.calculate();
+        this.calculateExpression();
     }
   }
 }

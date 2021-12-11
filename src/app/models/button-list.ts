@@ -1,6 +1,6 @@
-import { values } from './button-values';
+import { ButtonValues } from './button-values';
 
-export const BUTTONS: values[] =[
+export const CalculatorKeys: ButtonValues[] =[
     {class: "", value:"1"},
     {class: "", value:"2"},
     {class: "", value:"3"},

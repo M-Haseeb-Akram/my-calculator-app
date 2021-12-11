@@ -1,4 +1,4 @@
-export interface values {
+export interface ButtonValues {
     class: string;
     value:string;
 }
