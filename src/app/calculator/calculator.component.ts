@@ -24,13 +24,31 @@ export class CalculatorComponent implements OnInit {
     let last_word = this.input_value.slice(-1) 
     let check_value = this.operators.includes(value);
     let check_last_word = this.operators.includes(last_word);
-    if (check_last_word){ 
+    if(this.result.length === 0 && this.result !== "Invalid"){
+      if (check_last_word){ 
         if(!check_value){
           this.input_value += value; 
         }    
+      } 
+      else{
+        this.input_value += value; 
+      } 
     } 
-    else{
-      this.input_value += value; 
+    else {
+      if(this.result === "Invalid"){
+        this.result = "";
+        this.input_value = value;
+      }
+      else {
+        if(check_value){
+          this.input_value = this.result+value;
+          this.result = "";
+        }
+        else{
+          this.result = "";
+          this.input_value = value;
+        }
+      }
     } 
   }
 
